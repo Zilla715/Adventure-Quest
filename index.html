@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+  <title>PlayQuest</title>
+  <meta name="theme-color" content="#0b0f14"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="PlayQuest"/>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="icon" href="icon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="icon.svg"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="title">PlayQuest</span>
+    </div>
+    <div class="subtitle">Tap a tag. The playground becomes the game.</div>
+  </header>
+
+  <main id="app">
+    <section class="card" id="startCard">
+      <h1>Start a game</h1>
+      <p>Pick a game below, then tap the NFC tags around the playground in any order the game calls for. This page reads each tap and speaks the next clue out loud.</p>
+
+      <div class="grid">
+        <label class="field">
+          <span>Playground ID</span>
+          <input id="parkId" value="123" inputmode="numeric"/>
+        </label>
+
+        <label class="field">
+          <span>Game</span>
+          <select id="gameSelect"></select>
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="startBtn" class="primary">Start game</button>
+        <button id="resetBtn">Reset progress</button>
+      </div>
+
+      <p class="note">
+        For a live demo: turn the volume up, keep the screen on, and try Pocket Mode once the game starts so kids are watching the playground, not the phone.
+      </p>
+    </section>
+
+    <section class="card hidden" id="gameCard">
+      <div class="row space">
+        <div>
+          <div class="kicker" id="gameName"></div>
+          <div class="small">Playground <span id="parkName"></span></div>
+        </div>
+        <div class="pill" id="statusPill">Ready</div>
+      </div>
+
+      <div class="big" id="instruction">Find the next tag</div>
+      <div class="small" id="detail"></div>
+
+      <div class="row">
+        <button id="playAudioBtn" class="primary">Play clue</button>
+        <button id="pocketBtn">Pocket mode</button>
+      </div>
+
+      <div class="row space">
+        <div class="small">Step <span id="stepNum"></span> of 10</div>
+        <div class="small">Time <span id="timeVal">0:00</span></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row wrap" id="badges"></div>
+
+      <div class="divider"></div>
+
+      <details>
+        <summary>Demo controls</summary>
+        <p class="note">Use these to walk through the game away from the playground, without a real NFC tag.</p>
+        <div class="row wrap">
+          <button id="simulateCorrect">Simulate correct tap</button>
+          <button id="simulateWrong">Simulate wrong tap</button>
+          <button id="endGame">Jump to finish</button>
+        </div>
+      </details>
+    </section>
+
+    <section class="card hidden" id="winCard">
+      <h1>Badge earned</h1>
+      <div class="big" id="winTitle">You did it</div>
+      <p id="winMsg"></p>
+      <div class="row">
+        <button id="playAgain" class="primary">Play again</button>
+        <button id="backHome">Home</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="small">Demo build. Runs in the browser and uses your phone's built in text to speech, so no app install and no audio files are needed to prove the concept.</div>
+  </footer>
+
+  <script src="playquest.js"></script>
+</body>
+</html>
